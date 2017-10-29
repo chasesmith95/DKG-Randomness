@@ -4,7 +4,6 @@ bigInt?
 ElGamal?
 polynomialoperator?
 forge?
-
 */
 
 /* Distributed key generation library for

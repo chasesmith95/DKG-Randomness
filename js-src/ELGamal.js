@@ -1,19 +1,12 @@
 var forge = require('node-forge');
 var bigInt = require("big-integer");
-/*
-  var bits = 160;
-
-
-
-};)};};
-*/
 
 
 /*
 Generates a random prime number in numBits
 Input: numBits
 Output: prime number
-//TODO return the prime number and the factor
+//TODO return the prime number and the factor, and is this the best way
 */
 function randomPrime(numBits) {
   forge.prime.generateProbablePrime(bits, function(err, num) {
@@ -59,22 +52,27 @@ function generatePublicPrivateKey(prime, g) {
 
 
 /*
-TODO
 Generates the encrypted version of a message (between 1 and minus 1) from the given public key.
 Inputs: public key, private key, generator, prime, message
 Outputs: encrypted message (c, d) and signature (s, r)
 */
-function encrypt(m, ...) {
+function encrypt(m, pub_key, private_key, prime, g) {
  var k = bigInt.randBetween(1, factor.minus(1));
- var c1 = g.modPow(k, prime);
- //TODO:
+ var c = g.modPow(k, prime);
+ var y_k = g.modPow(pub_key, prime);
+ var d = y_k.multiply(m).mod(prime);
+
+ //signature using the k and the private key and the multiplicative inverse of k
+ var k_inv = k.modInv(p.minus(1));
+ var s = bigInt(m).minus(c.multiply(private_key)).multiply(k_inv).mod(p.minus(1));
+ return ((c, d), (s, c));
 };
 
 
 
 /*
 Generates the message from the private key between
-i
-//TODO:
+
+//TODO: damn!!!!
 */
-function decrypt() {};
+function decrypt((c, d), (s, c), ) {};
