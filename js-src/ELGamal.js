@@ -61,11 +61,10 @@ function encrypt(m, pub_key, private_key, prime, g) {
  var c = g.modPow(k, prime);
  var y_k = g.modPow(pub_key, prime);
  var d = y_k.multiply(m).mod(prime);
-
  //signature using the k and the private key and the multiplicative inverse of k
  var k_inv = k.modInv(p.minus(1));
  var s = bigInt(m).minus(c.multiply(private_key)).multiply(k_inv).mod(p.minus(1));
- return ((c, d), (s, c));
+ return ((c, d), (s, c)); //This may not be the best way to do this
 };
 
 
@@ -73,6 +72,6 @@ function encrypt(m, pub_key, private_key, prime, g) {
 /*
 Generates the message from the private key between
 
-//TODO: damn!!!!
+//TODO: what does it take in and what does it put out 
 */
 function decrypt((c, d), (s, c), ) {};
