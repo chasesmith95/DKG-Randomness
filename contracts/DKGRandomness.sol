@@ -2,10 +2,15 @@ pragma solidity ^0.4.4;
 
 import "./ConvertLib.sol";
 
-// This is just a simple example of a coin-like contract.
-// It is not standards compatible and cannot be expected to talk to other
-// coin/token contracts. If you want to create a standards-compliant
-// token, see: https://github.com/ConsenSys/Tokens. Cheers!
+/*
+What does this contract need to do?
+It needs to:
+	Be instantiated with a limit on verifiers
+	Needs to give every verifiers
+	Hold a list of public keys (not a)
+
+
+*/
 
 contract DKG {
 	mapping (address => address) public_keys;
@@ -15,6 +20,7 @@ contract DKG {
 	uint polynomial;
 	bool is_verified;
 	//list of things
+
 
 
 	function DKG() {

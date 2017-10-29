@@ -4,5 +4,12 @@
 
 function randomPolynomial() {};
 
-//function encrypted0s() {};
+//function getsharedsecrets() {};
 //How does the random polynomial work.
+
+
+/*
+Verification of
+*/
+
+//

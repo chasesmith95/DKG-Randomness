@@ -1,11 +1,19 @@
 /*
 Required imports
+bigInt?
+ElGamal?
+polynomialoperator?
+forge?
+
 */
 
 /* Distributed key generation library for
 javascript and for web plug-ins */
 
-
+var prime_order; //bigint
+var generator; //bigint
+//could you have a list of shared secrets
+//could you have a list of encrypted secrets that specific people can see
 
 
 /* Initialize the encryption scheme (in this ELGamal) this creates:
@@ -25,32 +33,60 @@ Get a public and private key from the el gamal function
 
 
 /*
-Generate a random polynomial of degree t on the order of p,
-along with t values that when multiplied create 0 ... how does this work??
+Generate a random polynomial of degree t-1 on the order of p,
+along with t values
 */
-//polyfunctions 
+//polyfunctions
 
 
 
 /*
-Multi-public key Gamal Encryption for everybody
+Multi-public key generation Gamal Encryption for everybody
+-simply multiply all of the public keys together
 */
 //How to combine el gamal? with signature (use the el gamal thing)
+/* for later implementations
+function publicEncrypt() {
 
+}
+*/
 
 /*
-Validation of the Polynomials
-//validation x_j = f(j)
+Validate a point on polynomials
+Input: shared_secrets,
+
 */
 //polyfunctions create a polynomial that gives the secret key
 
 /*
-Encrypt the 0 of the function with someone's el gamal address
+Encrypt a point of the function with someone's el gamal address and sign it
 */
 //el gamal
 
 
 /*
-Decrypt the 0 of a function with someone's el gamal address
+Decrypt a point of a function with someone's el gamal address that is signed
 */
 //el gamal
+
+
+/*
+Create a random polynomial of order t in mod p
+with the x_0 component being the secret key
+*/
+//polynomial
+
+
+
+/*
+Create a set of points in the polynomial (shared secrets),
+and then create g^xi of points
+*/
+//polynomialoperator
+
+
+/*
+Polynomial interpolation mod p (given t+1 points on the polynomial
+it is possible to uniquely distinguish it
+*/
+//polynomialoperator

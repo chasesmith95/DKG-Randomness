@@ -1,33 +1,49 @@
 var forge = require('node-forge');
 var bigInt = require("big-integer");
+/*
+  var bits = 160;
+
+
+
+};)};};
+*/
+
 
 /*
-Instantiates ElGamal, with a random prime for the order of the group
-and a generator for the group
-Input: the number of bits to include in ElGamal Prime.
-Output: the random prime, the generator
+Generates a random prime number in numBits
+Input: numBits
+Output: prime number
+//TODO return the prime number and the factor
 */
-function elgamal(numBits) {
-  var bits = 160;
+function randomPrime(numBits) {
   forge.prime.generateProbablePrime(bits, function(err, num) {
-    // Create prime factor and convert to bigInt
     var factor = bigInt(num.toString(10));
-    // Find a larger prime of which factor is prime factor
-    // Determine a large even number as a co-factor
     var coFactor = bigInt.randBetween("2e260", "3e260"); // should be bitLength(prime) - bitLength(factor)
     var prime = 4;
     while(!coFactor.isEven() || !prime.isPrime()) {
       coFactor = bigInt.randBetween("2e260", "3e260"); // should be bitLength(prime) - bitLength(factor)
       prime = coFactor.multiply(factor);
       prime = prime.add(1);
-    }
-    // Get a generator g for the multiplicative group mod factor
-    var j = prime.minus(1).divide(factor);
-    var h = bigInt.randBetween(2, prime.minus(1));
-    var g = h.modPow(j, factor);
-};)};};
+      }
+  });
 
 
+};
+
+
+
+
+/*
+Generates a generator for a prime ordered group
+Input: prime order (must be prime)
+Output: generator
+*/
+function groupGenerator(prime, factor) {
+  var j = prime.minus(1).divide(factor);
+  var h = bigInt.randBetween(2, prime.minus(1));
+  var g = h.modPow(j, factor);
+  return g;
+};
 
 /*
 Generates a random Public key, private key pairing
@@ -36,10 +52,9 @@ Input: the prime and the generator
 Output: public key, private key
 */
 function generatePublicPrivateKey(prime, g) {
-  // Secret key
-  var a = bigInt.randBetween(2, factor.minus(2));
-  // Public key
-  var A = g.modPow(a, prime);
+  var privateKey = bigInt.randBetween(2, factor.minus(2));
+  var publicKey = g.modPow(a, prime);
+  return (publicKey, privateKey);
 };
 
 
@@ -51,6 +66,7 @@ Outputs: encrypted message (c, d) and signature (s, r)
 function encrypt(m, ...) {
  var k = bigInt.randBetween(1, factor.minus(1));
  var c1 = g.modPow(k, prime);
+ //TODO:
 };
 
 
@@ -58,6 +74,6 @@ function encrypt(m, ...) {
 /*
 Generates the message from the private key between
 i
-
+//TODO:
 */
 function decrypt() {};
