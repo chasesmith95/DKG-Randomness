@@ -16,13 +16,12 @@ contract DKG {
 	mapping (address => address) public_keys;
 	//public key
 	//private key finally
-	mapping (address => bool) addresses;
-	//mapping (address => stuff) check;
+	mapping (address => bool) accepted; // whether or not these
+	//mapping (address => stuff) check; //this should be a list of all of the shared secret keys
 	uint limit;
 	bool is_verified;
 	//could also stake the nodes
 
-	//list of things
 
 
 
@@ -35,24 +34,34 @@ contract DKG {
 
 	/*
 		Add an individual node
-		requires a public key, c0, c1, .....ct-1
+		requires a public key, and committed shared secrets c0, c1, .....cn
 	*/
 	function addNode();
 
 
 	/*
 		Request node to distribute shared secrets to nodes
+		Unknown whether or not this is needed
 	*/
 	function distributeKeys();
 
 
 	 /*
-		Individual Node verifies the validity of a key from another
+		Individual Node verifies the validity of a shared key from another
 		node
 	*/
 	function verifyKey();
 
-	function acceptNode();
+	/*
+		A node is accepted into the DKG group of nodes
+		Perhaps can only be done by owner
+	*/
+	function acceptNode(address _node) private {
+		accepted[_node] = true;
+		//could have event here
+	}
+
+
 
 	function getRandom();
 
