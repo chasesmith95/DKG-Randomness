@@ -59,6 +59,7 @@ function generatePublicPrivateKey(prime, g) {
 
 
 /*
+TODO
 Generates the encrypted version of a message (between 1 and minus 1) from the given public key.
 Inputs: public key, private key, generator, prime, message
 Outputs: encrypted message (c, d) and signature (s, r)
