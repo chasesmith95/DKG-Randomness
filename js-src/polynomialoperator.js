@@ -11,6 +11,9 @@ function randomPolynomial(degree, secret_key) {
 //How does the random polynomial work.
 
 
+
+
+
 /*
 Verification of
 */
