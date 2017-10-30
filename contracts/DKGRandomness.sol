@@ -44,8 +44,8 @@ contract DKG {
 	function DKG(uint256 _prime, uint256 _g, uint _limit, uint _degree) {
 		prime = _prime;
 		g = _g;
-		//created with an initial limit (number of participants)
-		//created with a degree (t)
+		limit = _limit;
+		degree = _degree;
 	}
 
 	/*

@@ -6,7 +6,6 @@ var bigInt = require("big-integer");
 Generates a random prime number in numBits
 Input: numBits
 Output: prime number
-//TODO return the prime number and the factor, and is this the best way
 */
 function randomPrime(numBits) {
   forge.prime.generateProbablePrime(bits, function(err, num) {
@@ -19,8 +18,7 @@ function randomPrime(numBits) {
       prime = prime.add(1);
       }
   });
-
-
+  return (factor, prime);
 };
 
 
@@ -59,7 +57,8 @@ Outputs: encrypted message (c, d) and signature (s, r)
 function encrypt(m, pub_key, private_key, prime, g) {
  var k = bigInt.randBetween(1, factor.minus(1));
  var c = g.modPow(k, prime);
- var y_k = g.modPow(pub_key, prime);
+ var y = g.modPow(private_key, prime);
+ var y_k = y.modPow(k, prime);
  var d = y_k.multiply(m).mod(prime);
  //signature using the k and the private key and the multiplicative inverse of k
  var k_inv = k.modInv(p.minus(1));
@@ -71,7 +70,18 @@ function encrypt(m, pub_key, private_key, prime, g) {
 
 /*
 Generates the message from the private key between
-
-//TODO: what does it take in and what does it put out 
+Input:
+Output:
 */
-function decrypt((c, d), (s, c), ) {};
+function decrypt(c, d, r, s, private_key, prime) {
+  //we need to divide
+  var inverse = bigInt(c).powMod(private_key).modInv(prime);
+  var m = bigInt(d).multiply(inverse).mod(prime);
+
+  //verify signature
+  /*
+    TODO
+  */
+
+  return m;
+};
