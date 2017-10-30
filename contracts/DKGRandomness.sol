@@ -48,6 +48,8 @@ contract DKG {
 		degree = _degree;
 	}
 
+
+
 	/*
 		Add an individual node
 		requires a public key, and committed shared secrets c0, c1, .....cn
@@ -74,7 +76,6 @@ contract DKG {
 	*/
 	function acceptNode(address _node) private {
 		accepted[_node] = true;
-		//could have event here
 	}
 
 
