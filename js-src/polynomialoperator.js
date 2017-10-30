@@ -2,7 +2,8 @@
 var algebra = require('algebra.js');
 
 /* Generates a random polynomial, P, of 
-degree specified where P(0) = secret_key  */
+degree specified where P(0) = secret_key  
+Return polynomial, which is an array of its coefficients*/
 function randomPolynomial(degree, secret_key, prime) {
 	var poly = [];
 	for (i = 0; i < degree; i++) {
@@ -25,12 +26,12 @@ function interpolation(points) {
 	var delta_polynomials = [];
 	for (int i = 0; i < points.length; i++) {
 		// constructing a delta polynomial for each point
-		var expr = new Expression(1);
+		var expr = new Expression("x");
 		var divide = 1;
 		for (int j = 0; j < points.length; j++) {
 			if (i != j) {
 				var tmpExpr = new Expression("x");
-				tmpExpr = tmpExpr.subtract(points[j][1]);
+				tmpExpr = tmpExpr.subtract(points[j][0]);
 				divide = divide * (points[i][0] - points[j][0]); 
 				expr = expr.multiply(tmpExpr);
 			}
@@ -45,15 +46,5 @@ function interpolation(points) {
 	return poly;
 };
 
-//function getsharedsecrets() {};
-//How does the random polynomial work.
-
-
-
-
-
-/*
-Verification of
-*/
 
 //
